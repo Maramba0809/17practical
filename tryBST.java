@@ -13,9 +13,9 @@ class tNode{
     }
 } //Function defined
 
-public class tryBST {
+ class BST {
     tNode root;
-    tryBST(){
+    BST(){
         root=null;
     }
 
@@ -34,16 +34,16 @@ public class tryBST {
         return root;
     }public void insert (int key){
             root =insertRec(root,key);
-}// tryBST checked properly
-    boolean istryBST (tNode node ,int min,int max){
-        if (node==null){
+}// BST checked properly
+    boolean isBST (tNode node ,int min,int max){
+        if (node==null)
             return true;
 
-        }if (node.key <min || node.key > max){
+        if (node.key <min || node.key > max)
             return false;
 
-        }return istryBST(node.left,min,node.key -1)&& istryBST(node.right ,node.key +1,max);
-        }// MIN value being found
+        return istryBST(node.left,min,node.key -1)&& istryBST(node.right ,node.key +1,max);
+    }// MIN value being found
     int minvalue (tNode node){
         int min =node.key;
 
@@ -56,14 +56,14 @@ public class tryBST {
 
     }//Delete Function
     tNode deleteRec(tNode root,int key){
-        if (root ==null) {
+        if (root ==null) 
             return root;
 
-        }if (key<root.key){
+        if (key<root.key)
             root.left=deleteRec(root.left,key);
-        }else if (key>root.key){
+        else if (key>root.key)
             root.right =deleteRec(root.right,key);
-        }else{
+        else{
             if(root.left ==null)
                 return root.right;
             else if (root.right ==null)
@@ -95,12 +95,20 @@ public class tryBST{
         for (int i=2;i<=max;i+=2){
             tree.root=tree.deleteRec(tree.root ,i);
         }
+    }static double StandardDeviation(double[]data,double mean){
+        double sum=0;
+        for(double value :data){
+            sum =+ Math.pow(value-mean,2);
+        } return Math.sqrt(sum/data.length);
     }
     public static void main(String []args){
             int n=18;
             int max =(int)Math.pow(2,n)-1;
 
             int repetitions =30;
+            double []  populateTimes =new double [repetitions];
+            double [] deleteTimes =new double[repetitions];
+
 
             long totalPopulate=0;
             long totalDelete=0;
@@ -134,8 +142,12 @@ public class tryBST{
         double avgPopulate =totalPopulate/(double)repetitions;
         double avgDelete =totalDelete /(double)repetitions;
 
-        System.out.println("\nMethod\t\t\tNumber of keys\taverage time(ms)");
-        System.out.println("Populate tree\t\t"+max+"\t\t"+avgDelete);
+        double stdpopulate = totalPopulate /repetitions;
+        double stdDelete =totalDelete/repetitions;
+
+        System.out.println("\nMethod\t\t\tNumber of keys n\taverage time in ms. \tStandard Deviation");
+        System.out.println("Populate tree\t\t" +max+ "\t\t" +avgDelete + "\t\t\t"+stdpopulate);
+        System.out.println("remove evens \t\t" +max+ "\t\t" +avgDelete +"\t\t\t" +stdDelete);
 
     }
 }
