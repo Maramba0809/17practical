@@ -96,5 +96,49 @@ public class tryBST{
             tree.root=tree.deleteRec(tree.root ,i);
         }
     }
+    public static void main(String []args){
+            int n=18;
+            int max =(int)Math.pow(2,n)-1;
+
+            int repetitions =30;
+
+            long totalPopulate=0;
+            long totalDelete=0;
+
+            for(int i=0;i< repetitions;i++){
+
+            BST tree =new BST();
+
+            //POPULATE TREE
+            long startPopulate =System.currentTimeMillis();
+
+            buildbalanced(tree,1,max);
+
+            long endPopulate=System.currentTimeMillis();
+
+            totalPopulate +=(endPopulate -startPopulate);
+
+
+            //check BST
+            if (!tree.isBST(tree.root,Integer.MIN_VALUE,Integer.MAX_VALUE)){
+                System.out.println("Tree is npt a BST!");
+            }//DELETE EVENS
+            long startDelete =System.currentTimeMillis();
+            removeEvens (tree,max);
+
+            long endDelete=System.currentTimeMillis();
+
+            totalDelete += (endDelete-startDelete);
+
+        }
+        double avgPopulate =totalPopulate/(double)repetitions;
+        double avgDelete =totalDelete /(double)repetitions;
+
+        System.out.println("\nMethod\t\t\tNumber of keys\taverage time(ms)");
+        System.out.println("Populate tree\t\t"+max+"\t\t"+avgDelete);
+
+    }
+}
+
     
 
