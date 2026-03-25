@@ -142,7 +142,7 @@ public class tryBST{
         double avgPopulate =totalPopulate/(double)repetitions;
         double avgDelete =totalDelete /(double)repetitions;
 
-        double stdpopulate = totalPopulate /repetitions;
+        double stdpopulate = totalPopulate /repetitions; //std calculations 
         double stdDelete =totalDelete/repetitions;
 
         System.out.println("\nMethod\t\t\tNumber of keys n\taverage time in ms. \tStandard Deviation");
