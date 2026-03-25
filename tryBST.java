@@ -11,4 +11,26 @@ class tNode{
         right=null;
         
     }
-} 
+} //Function defined
+
+public class tryBST {
+    tNode root;
+    tryBST(){
+        root=null;
+    }
+
+    tNode insertRec(tNode root,int key){
+        if(root ==null){
+            root=new tNode(key);
+            return root;
+
+        }if (key<root.key){
+            root.left=insertRec(root.left,key);
+
+        }else if(key<root.key){
+            root.right =insertRec(root.right,key);
+        }
+
+        return root;
+    }
+}
